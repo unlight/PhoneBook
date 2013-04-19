@@ -9,13 +9,15 @@ namespace PhoneBook
     class Application
     {
 
+    	const string APPLICATION = "PhoneBook";
+    	const float VERSION = 1.0f;
         const char FieldSeparator = '\t';
         readonly string FieldSeparatorString = new String(FieldSeparator, 1);
         private string[] Fields = {"ID", "First Name", "Phone Number" };
 
         public Application()
         {
-            Console.Title = "Телефонная книга v1.0.0";
+            Console.Title = "Телефонная книга v" + VERSION;
         }
 
         public void AddRecord()
@@ -25,7 +27,7 @@ namespace PhoneBook
 
             Console.Clear();
             Console.WriteLine("Новая запись: ");
-            string[] NewValues = new string[Fields.Length + 1];
+            string[] NewValues = new string[Fields.Length];
             for (Index = 1; Index < Fields.Length; Index++)
             {
                 Console.Write("Введите '{0}': ", Fields[Index]);
@@ -40,6 +42,7 @@ namespace PhoneBook
             StreamWriter.Close();
         }
 
+        // TODO: Постраничная 
         void ShowRecords()
         {
             string S;
@@ -63,7 +66,9 @@ namespace PhoneBook
             string[] Strings; 
             string S;
 	
-            // TODO: Check if file is exists.
+            if (!File.Exists("db.txt")) {
+            	return 1;
+            }
             Strings = File.ReadAllLines("db.txt");
             S = Strings[Strings.Length-1];
             Strings = S.Split(FieldSeparator);
@@ -73,10 +78,22 @@ namespace PhoneBook
             
             return Result;
         }
+        
+        // UNDONE: Settings
+        void Settings() 
+        {
+        	
+        }
 
         void Exit()
         {
 
+        }
+
+		// UNDONE: Need RegExp        
+        public void Search() {
+        	Console.Write("Введите строку для поска: ");
+        	string S = Console.ReadLine();
         }
 
         public void Run()
@@ -100,18 +117,19 @@ namespace PhoneBook
 
         public void Welcome()
         {
-            // TODO: Имя программы сделать как константу.
-            Console.WriteLine("Welcome to PhoneBook Application.");
+            Console.WriteLine("Welcome to " + APPLICATION + " " + VERSION);
         }
 
         public void MainMenu(bool ClearScreen = false)
         {
             if (ClearScreen)
             {
-                // TODO: Очистить экран.				
+            	Console.Clear();
             }
             Console.WriteLine("[1] Добавить запись");
             Console.WriteLine("[2] Посмотреть записи");
+            Console.WriteLine("[3] Поиск");
+            Console.WriteLine("[8] Настройки");
             Console.WriteLine("[0] Выход");
             Console.Write("Выберите действие: ");
         }
