@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace PhoneBook
 {
@@ -19,7 +20,7 @@ namespace PhoneBook
         {
             Console.Title = "Телефонная книга v" + VERSION;
         }
-
+        
         public void AddRecord()
         {
             string S;
@@ -87,7 +88,7 @@ namespace PhoneBook
 
         void Exit()
         {
-
+        	Environment.Exit(0);
         }
 
 		// UNDONE: Need RegExp        
