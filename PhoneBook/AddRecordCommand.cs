@@ -13,15 +13,13 @@ namespace PhoneBook
 	/// <summary>
 	/// Description of Class1.
 	/// </summary>
-	public class AddRecordCommand 
-		//: Command
+	public class AddRecordCommand : Command
 	{
-		public AddRecordCommand() : base("D1")
+		public AddRecordCommand() : base(ConsoleKey.D1, "Добавить запись")
 		{
 		}
 		
-//		public override void Execute() {
-//			
-//		}
+		public override void Execute() {
+		}
 	}
 }

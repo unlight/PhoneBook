@@ -17,7 +17,7 @@ namespace PhoneBook
         public delegate void KeyHandler();
         public event KeyHandler OnCancelKey;
         private Command _Command; // Current command execution.
-        private List<Command> Commands;
+        private List<Command> Commands = new List<Command>();
         private ConsoleKey _ConsoleKey; // Last console key.
         
 		public ConsoleKey ConsoleKey
@@ -42,15 +42,12 @@ namespace PhoneBook
         public Application()
         {
             Console.Title = "Телефонная книга v" + VERSION;
-//            OnCancelKey += delegate {
-//            	Console.WriteLine("Нажата клавиша Escape.");
-//            };
         }
         
         public void AddRecord()
         {
             string S;
-            var Index = 0;
+            int Index = 0;
             ConsoleKeyInfo ConsoleKeyInfo;
             bool IsCanceled = false;
 
@@ -85,25 +82,6 @@ namespace PhoneBook
             var Entry = new Entry(NewValues);
             Entry.Save();
         }
-
-        // TODO: Постраничная 
-        void ShowRecords()
-        {
-            string S;
-
-            Console.WriteLine();
-
-            var StreamReader = new StreamReader(new FileStream("db.txt", FileMode.Open));
-            //var Records = File.ReadLines("db.txt");
-
-            while (!StreamReader.EndOfStream)
-            {
-                S = StreamReader.ReadLine();
-                Console.WriteLine(S);
-            }
-            StreamReader.Close();
-
-        }
     
         // UNDONE: Settings
         void Settings() 
@@ -119,11 +97,14 @@ namespace PhoneBook
 		
 		public void Run() 
 		{
-			var Commands = new List<Command>();
 			Commands.Add(new ExitCommand());
+            Commands.Add(new ShowRecordsCommand());
+
+            Console.Clear();
+            Welcome();
 			
 			while (true) {
-				MainMenu();
+                MainMenu();
 				ConsoleKeyInfo ConsoleKeyInfo = Console.ReadKey();
 				ConsoleKey = ConsoleKeyInfo.Key;
 				foreach (var Command in Commands) {
@@ -133,29 +114,12 @@ namespace PhoneBook
 						break;	
 					}
 				}
+                if (ConsoleKeyInfo.Key == ConsoleKey.D0)
+                {
+                    return;
+                }
 			}
 		}
-
-        public void _Run()
-        {
-        	
-        	
-            Welcome();
-
-            while (true)
-            {
-                MainMenu();
-                ConsoleKeyInfo ConsoleKeyInfo = Console.ReadKey();
-                // Console.WriteLine("+" + ConsoleKeyInfo.Key.ToString() + "xx");
-                switch (ConsoleKeyInfo.Key.ToString())
-                {
-                    case "D1": AddRecord(); break;
-                    case "D2": ShowRecords(); break;
-                    // case "0": break;
-                }
-                if ("D0" == ConsoleKeyInfo.Key.ToString()) return;
-            }
-        }
 
         public void Welcome()
         {
@@ -164,18 +128,14 @@ namespace PhoneBook
 
         public void MainMenu(bool ClearScreen = false)
         {
-        	// TODO: Brush this block.
             if (ClearScreen) {
             	Console.Clear();
-            } else {
-            	Console.WriteLine();
             }
-            
-            Console.WriteLine("[1] Добавить запись");
-            Console.WriteLine("[2] Посмотреть записи");
-            Console.WriteLine("[3] Поиск");
-            Console.WriteLine("[8] Настройки");
-            Console.WriteLine("[0] Выход");
+
+            foreach (var Command in Commands)
+            {
+                Console.WriteLine("[{0}] {1}", Command.ConsoleKey, Command.Title);
+            }
             Console.Write("Выберите действие: ");
         }
     }

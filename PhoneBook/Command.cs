@@ -15,21 +15,31 @@ namespace PhoneBook
 	/// </summary>
 	public abstract class Command
 	{
-		private string _ConsoleKeyString;
-		
-		public string ConsoleKeyString {
-			get { return _ConsoleKeyString; }
-			set { _ConsoleKeyString = value; }
+        private ConsoleKey _ConsoleKey;
+
+        public ConsoleKey ConsoleKey
+        {
+			get { return _ConsoleKey; }
+			set { _ConsoleKey = value; }
 		}
-		
-		public Command(string ConsoleKeyString) 
+
+        public string Title { get; set; }
+
+        public Command(ConsoleKey ConsoleKey)
 		{
-			this.ConsoleKeyString = ConsoleKeyString;
+            this.ConsoleKey = ConsoleKey;
+            this.Title = "Unknown";
 		}
+
+        public Command(ConsoleKey ConsoleKey, string Title)
+        {
+            this.ConsoleKey = ConsoleKey;
+            this.Title = Title;
+        }
 		
 		public bool IsMatchKey(ConsoleKey K)
 		{
-			return (K.ToString() == this.ConsoleKeyString);
+			return (K == this.ConsoleKey);
 		}
 		
 		abstract public void Execute();

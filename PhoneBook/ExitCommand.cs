@@ -15,7 +15,7 @@ namespace PhoneBook
 	/// </summary>
 	public class ExitCommand : Command
 	{
-		public ExitCommand() : base("D0") {
+		public ExitCommand() : base(ConsoleKey.D0, "Выход") {
 		}
 		
 		public override void Execute() 
