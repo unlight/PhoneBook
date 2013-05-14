@@ -6,9 +6,9 @@ using System.IO;
 
 namespace PhoneBook
 {
-    class ShowRecordsCommand : Command
+    class ShowEntriesCommand : Command
     {
-        public ShowRecordsCommand() : base(ConsoleKey.D1, "Посмотреть записи") {
+        public ShowEntriesCommand() : base(ConsoleKey.D1, "Посмотреть записи") {
         }
 
         // TODO: Постраничная навигация
@@ -19,7 +19,6 @@ namespace PhoneBook
             Console.WriteLine();
 
             var StreamReader = new StreamReader(new FileStream("db.txt", FileMode.Open));
-            //var Records = File.ReadLines("db.txt");
 
             while (!StreamReader.EndOfStream)
             {

@@ -1,8 +1,8 @@
 ﻿/*
  * Created by SharpDevelop.
  * User: S
- * Date: 20.04.2013
- * Time: 23:31
+ * Date: 14.05.2013
+ * Time: 22:35
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
@@ -11,15 +11,17 @@ using System;
 namespace PhoneBook
 {
 	/// <summary>
-	/// Description of Class1.
+	/// Description of SearchCommand.
 	/// </summary>
-	public class AddRecordCommand : Command
+	public class SearchCommand : Command
 	{
-		public AddRecordCommand() : base(ConsoleKey.D1, "Добавить запись")
+		public SearchCommand() : base(ConsoleKey.D3, "Поиск")
 		{
+			
 		}
 		
 		public override void Execute() {
+			throw new NotImplementedException();
 		}
 	}
 }

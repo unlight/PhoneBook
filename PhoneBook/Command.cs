@@ -16,7 +16,6 @@ namespace PhoneBook
 	public abstract class Command
 	{
         private ConsoleKey _ConsoleKey;
-
         public ConsoleKey ConsoleKey
         {
 			get { return _ConsoleKey; }
@@ -24,12 +23,6 @@ namespace PhoneBook
 		}
 
         public string Title { get; set; }
-
-        public Command(ConsoleKey ConsoleKey)
-		{
-            this.ConsoleKey = ConsoleKey;
-            this.Title = "Unknown";
-		}
 
         public Command(ConsoleKey ConsoleKey, string Title)
         {
