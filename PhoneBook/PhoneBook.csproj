@@ -64,6 +64,7 @@
       <DependentUpon>Command.cs</DependentUpon>
     </Compile>
     <Compile Include="Application.cs" />
+    <Compile Include="DeleteCommand.cs" />
     <Compile Include="ExitCommand.cs">
       <DependentUpon>Command.cs</DependentUpon>
     </Compile>
@@ -75,7 +76,6 @@
     <Compile Include="ShowEntriesCommand.cs">
       <DependentUpon>Command.cs</DependentUpon>
     </Compile>
-    <Compile Include="Utils.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

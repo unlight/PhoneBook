@@ -34,7 +34,8 @@ namespace PhoneBook
             Commands.Add(new ShowEntriesCommand());
             Commands.Add(new AddEntryCommand());
             Commands.Add(new SearchCommand());
-           
+            Commands.Add(new DeleteCommand());
+         
 
             Console.Clear();
             Welcome();
@@ -69,7 +70,8 @@ namespace PhoneBook
 
             foreach (var Command in Commands)
             {
-                Console.WriteLine("[{0}] {1}", Command.ConsoleKey, Command.Title);
+            	// TODO: Вывод цифр без D.
+            	Console.WriteLine("[{0}] {1}", Command.ConsoleKey.ToString().Substring(1), Command.Title);
             }
             Console.Write("Выберите действие: ");
         }

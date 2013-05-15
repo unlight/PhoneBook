@@ -9,6 +9,8 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Linq;
+using System.Xml.Linq;
 
 namespace PhoneBook
 {
@@ -31,7 +33,7 @@ namespace PhoneBook
 		{
 			this._Values = Values;
 		}
-		
+        
 		public int Save() 
 		{
 			int Result;
@@ -49,6 +51,39 @@ namespace PhoneBook
             StreamWriter.Close();
 			
             return Result;
+		}
+		
+		/// <summary>
+		/// Finds first match.
+		/// </summary>
+		/// <param name="Value"></param>
+		/// <returns></returns>
+		public static string Find(string Value) {
+			var Content = File.ReadAllLines("db.txt");
+			string Result = "";
+			foreach (var Line in Content) {
+				var Pos = Line.IndexOf(Value, StringComparison.InvariantCultureIgnoreCase);
+				if (Pos >= 0) {
+					Result = Line;
+					break;
+				}
+			}
+			return Result;
+		}
+		
+		public static string Load(int EntryID) {
+			foreach (var Line in File.ReadAllLines("db.txt")) {
+				if (Convert.ToInt32(Line.Split(FieldSeparator)[0]) == EntryID) {
+					return Line;
+				}
+			}
+			return "";
+		}
+		
+		public static bool Delete(int EntryID) {
+			string[] Lines = File.ReadAllLines("db.txt");
+			//var Index = Array.FindIndex(Lines, Line => Convert.ToInt32(Line.Split(FieldSeparator)[0]) == EntryID);
+			return true;
 		}
 		
         protected int GetLastID()

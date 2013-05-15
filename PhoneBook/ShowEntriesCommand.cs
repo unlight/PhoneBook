@@ -11,7 +11,7 @@ namespace PhoneBook
         public ShowEntriesCommand() : base(ConsoleKey.D1, "Посмотреть записи") {
         }
 
-        // TODO: Постраничная навигация
+        // TODO: Постраничная навигация.
         public override void Execute() {
 
             string S;

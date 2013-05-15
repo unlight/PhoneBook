@@ -7,6 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using System.IO;
+using System.Collections.Generic;
 
 namespace PhoneBook
 {
@@ -21,7 +23,22 @@ namespace PhoneBook
 		}
 		
 		public override void Execute() {
-			throw new NotImplementedException();
+			
+			string S;
+			
+			Console.WriteLine();
+			Console.WriteLine("Введите фразу для поиска: ");
+			S = Console.ReadLine();
+			if (String.IsNullOrEmpty(S)) {
+				return;
+			}
+			var Found = Entry.Find(S);
+			if (Found != "") {
+				Console.WriteLine("Найдена запись: ");
+                Console.WriteLine(Found);
+			} else {
+				Console.WriteLine("Ничего не найдено.");
+			}
 		}
 	}
 }
