@@ -18,7 +18,7 @@ namespace PhoneBook
 	public class Entry
 	{
 
-	    private static string[] Fields = {"ID", "First Name", "Phone Number" };
+	    private static string[] Fields = {"First Name", "Phone Number" };
 		
 		private const char FieldSeparator = '\t';
 		private readonly string FieldSeparatorString = new String(FieldSeparator, 1);
@@ -81,9 +81,21 @@ namespace PhoneBook
 		}
 		
 		public static bool Delete(int EntryID) {
-			string[] Lines = File.ReadAllLines("db.txt");
-			//var Index = Array.FindIndex(Lines, Line => Convert.ToInt32(Line.Split(FieldSeparator)[0]) == EntryID);
-			return true;
+			var Lines = new List<string>(File.ReadAllLines("db.txt"));
+			bool Removed = false;
+			for (int i = 0, Count = Lines.Count; i < Count; i++) {
+				var N = Convert.ToInt32(Lines[i].Split(FieldSeparator)[0]);
+				if (N == EntryID) {
+					Lines.RemoveAt(i);
+					Removed = true;
+					break;
+				}
+			}
+			if (Removed) {
+				File.WriteAllLines("db.txt", Lines);
+				return true;
+			}
+			return false;
 		}
 		
         protected int GetLastID()

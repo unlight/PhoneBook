@@ -8,6 +8,7 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace PhoneBook
 {
@@ -33,21 +34,21 @@ namespace PhoneBook
             foreach (var Field in Fields)
             {
                 Console.Write("Введите '{0}': ", Field);
-                S = "";
+                var Sb = new StringBuilder();
                 do {
                 	IncomingKeyInfo = Console.ReadKey();
                 	IsCanceled = (IncomingKeyInfo.Key == ConsoleKey.Escape);
                 	if (IsCanceled) {
                 		break;
                 	}
-                	S += IncomingKeyInfo.Key.ToString();
+                	Sb.Append(IncomingKeyInfo.KeyChar);
                 } while (IncomingKeyInfo.Key != ConsoleKey.Enter);
                 
                 Console.WriteLine();
                 if (IsCanceled) {
                 	break;
                 }
-                NewValues.Add(S);
+                NewValues.Add(Sb.ToString());
             }
             
             if (IsCanceled) {
