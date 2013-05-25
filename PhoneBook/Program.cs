@@ -12,13 +12,13 @@ using System.IO;
 
 namespace PhoneBook
 {
-	
-	class Program
-	{
-		public static void Main(string[] args)
-		{
-			var Application = new Application();
-			Application.Run();
-		}
-	}
+    
+    class Program
+    {
+        public static void Main(string[] args)
+        {
+            var Application = new Application();
+            Application.Run();
+        }
+    }
 }

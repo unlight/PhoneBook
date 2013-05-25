@@ -12,33 +12,33 @@ using System.Collections.Generic;
 
 namespace PhoneBook
 {
-	/// <summary>
-	/// Description of SearchCommand.
-	/// </summary>
-	public class SearchCommand : Command
-	{
-		public SearchCommand() : base(ConsoleKey.D3, "Поиск")
-		{
-			
-		}
-		
-		public override void Execute() {
-			
-			string S;
-			
-			Console.WriteLine();
-			Console.WriteLine("Введите фразу для поиска: ");
-			S = Console.ReadLine();
-			if (String.IsNullOrEmpty(S)) {
-				return;
-			}
-			var Found = Entry.Find(S);
-			if (Found != "") {
-				Console.WriteLine("Найдена запись: ");
+    /// <summary>
+    /// Description of SearchCommand.
+    /// </summary>
+    public class SearchCommand : Command
+    {
+        public SearchCommand() : base(ConsoleKey.D3, "Поиск")
+        {
+            
+        }
+        
+        public override void Execute() {
+            
+            string S;
+            
+            Console.WriteLine();
+            Console.WriteLine("Введите фразу для поиска: ");
+            S = Console.ReadLine();
+            if (String.IsNullOrEmpty(S)) {
+                return;
+            }
+            var Found = Entry.Find(S);
+            if (Found != "") {
+                Console.WriteLine("Найдена запись: ");
                 Console.WriteLine(Found);
-			} else {
-				Console.WriteLine("Ничего не найдено.");
-			}
-		}
-	}
+            } else {
+                Console.WriteLine("Ничего не найдено.");
+            }
+        }
+    }
 }

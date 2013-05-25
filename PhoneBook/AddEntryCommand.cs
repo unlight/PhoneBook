@@ -12,16 +12,16 @@ using System.Text;
 
 namespace PhoneBook
 {
-	/// <summary>
-	/// Description of Class1.
-	/// </summary>
-	public class AddEntryCommand : Command
-	{
-		public AddEntryCommand() : base(ConsoleKey.D2, "Добавить запись")
-		{
-		}
-		
-		public override void Execute() {
+    /// <summary>
+    /// Description of Class1.
+    /// </summary>
+    public class AddEntryCommand : Command
+    {
+        public AddEntryCommand() : base(ConsoleKey.D2, "Добавить запись")
+        {
+        }
+        
+        public override void Execute() {
 
             string S;
             ConsoleKeyInfo IncomingKeyInfo;
@@ -36,28 +36,28 @@ namespace PhoneBook
                 Console.Write("Введите '{0}': ", Field);
                 var Sb = new StringBuilder();
                 do {
-                	IncomingKeyInfo = Console.ReadKey();
-                	IsCanceled = (IncomingKeyInfo.Key == ConsoleKey.Escape);
-                	if (IsCanceled) {
-                		break;
-                	}
-                	Sb.Append(IncomingKeyInfo.KeyChar);
+                    IncomingKeyInfo = Console.ReadKey();
+                    IsCanceled = (IncomingKeyInfo.Key == ConsoleKey.Escape);
+                    if (IsCanceled) {
+                        break;
+                    }
+                    Sb.Append(IncomingKeyInfo.KeyChar);
                 } while (IncomingKeyInfo.Key != ConsoleKey.Enter);
                 
                 Console.WriteLine();
                 if (IsCanceled) {
-                	break;
+                    break;
                 }
                 NewValues.Add(Sb.ToString());
             }
             
             if (IsCanceled) {
-            	return;
+                return;
             }
             
             var E = new Entry(NewValues);
             E.Save();
 
-		}
-	}
+        }
+    }
 }

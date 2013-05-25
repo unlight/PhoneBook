@@ -10,16 +10,16 @@ namespace PhoneBook
     class Application
     {
 
-		public const string APPLICATION = "PhoneBook";
-    	public const float VERSION = 1.0f;
+        public const string APPLICATION = "PhoneBook";
+        public const float VERSION = 1.0f;
         public const char FieldSeparator = '\t';
         public delegate void KeyHandler();
         private List<Command> Commands = new List<Command>();
 
         private Command _Command; // Current command execution.
         public Command Command {
-        	get { return _Command; }
-        	set { _Command = value; }
+            get { return _Command; }
+            set { _Command = value; }
         }
         
         public Application()
@@ -27,10 +27,10 @@ namespace PhoneBook
             Console.Title = "Телефонная книга v" + VERSION;
         }
   
-		
-		public void Run() 
-		{
-			Commands.Add(new ExitCommand());
+        
+        public void Run() 
+        {
+            Commands.Add(new ExitCommand());
             Commands.Add(new ShowEntriesCommand());
             Commands.Add(new AddEntryCommand());
             Commands.Add(new SearchCommand());
@@ -39,23 +39,23 @@ namespace PhoneBook
 
             Console.Clear();
             Welcome();
-			
-			while (true) {
+            
+            while (true) {
                 MainMenu();
-				ConsoleKeyInfo ConsoleKeyInfo = Console.ReadKey();
-				foreach (var Command in Commands) {
+                ConsoleKeyInfo ConsoleKeyInfo = Console.ReadKey();
+                foreach (var Command in Commands) {
                     if (Command.IsMatchKey(ConsoleKeyInfo.Key)) 
-					{
-						Command.Execute();
-						break;	
-					}
-				}
+                    {
+                        Command.Execute();
+                        break;    
+                    }
+                }
                 if (ConsoleKeyInfo.Key == ConsoleKey.D0)
                 {
                     return;
                 }
-			}
-		}
+            }
+        }
 
         public void Welcome()
         {
@@ -65,16 +65,16 @@ namespace PhoneBook
         public void MainMenu(bool ClearScreen = false)
         {
             if (ClearScreen) {
-            	Console.Clear();
+                Console.Clear();
             }
 
             foreach (var Command in Commands)
             {
-            	// TODO: Вывод цифр без D.
-            	Console.WriteLine("[{0}] {1}", Command.ConsoleKey.ToString().Substring(1), Command.Title);
+                // TODO: Вывод цифр без D.
+                Console.WriteLine("[{0}] {1}", Command.ConsoleKey.ToString().Substring(1), Command.Title);
             }
             Console.Write("Выберите действие: ");
         }
     }
-	
+    
 }
