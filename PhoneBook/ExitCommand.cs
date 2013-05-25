@@ -10,17 +10,17 @@ using System;
 
 namespace PhoneBook
 {
-	/// <summary>
-	/// Description of Class1.
-	/// </summary>
-	public class ExitCommand : Command
-	{
-		public ExitCommand() : base(ConsoleKey.D0, "Выход") {
-		}
-		
-		public override void Execute() 
-		{
-			Environment.Exit(0);
-		}
-	}
+    /// <summary>
+    /// Description of Class1.
+    /// </summary>
+    public class ExitCommand : Command
+    {
+        public ExitCommand() : base(ConsoleKey.D0, "Выход") {
+        }
+        
+        public override void Execute() 
+        {
+            Environment.Exit(0);
+        }
+    }
 }

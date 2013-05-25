@@ -1,5 +1,4 @@
 /PhoneBook/bin/
 /PhoneBook/obj/
 /PhoneBook/ProfilingSessions/
-PhoneBook.v11.suo
-PhoneBook.suo
+*.suo

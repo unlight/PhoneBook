@@ -60,17 +60,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Application.cs" />
-    <Compile Include="AddRecordCommand.cs">
+    <Compile Include="AddEntryCommand.cs">
       <DependentUpon>Command.cs</DependentUpon>
     </Compile>
+    <Compile Include="Application.cs" />
+    <Compile Include="DeleteCommand.cs" />
     <Compile Include="ExitCommand.cs">
       <DependentUpon>Command.cs</DependentUpon>
     </Compile>
     <Compile Include="Command.cs" />
     <Compile Include="Entry.cs" />
-    <Compile Include="ShowRecordsCommand.cs" />
-    <Compile Include="Utils.cs" />
+    <Compile Include="SearchCommand.cs">
+      <DependentUpon>Command.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShowEntriesCommand.cs">
+      <DependentUpon>Command.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -10,38 +10,31 @@ using System;
 
 namespace PhoneBook
 {
-	/// <summary>
-	/// Description of Command.
-	/// </summary>
-	public abstract class Command
-	{
+    /// <summary>
+    /// Description of Command.
+    /// </summary>
+    public abstract class Command
+    {
         private ConsoleKey _ConsoleKey;
-
         public ConsoleKey ConsoleKey
         {
-			get { return _ConsoleKey; }
-			set { _ConsoleKey = value; }
-		}
+            get { return _ConsoleKey; }
+            set { _ConsoleKey = value; }
+        }
 
         public string Title { get; set; }
-
-        public Command(ConsoleKey ConsoleKey)
-		{
-            this.ConsoleKey = ConsoleKey;
-            this.Title = "Unknown";
-		}
 
         public Command(ConsoleKey ConsoleKey, string Title)
         {
             this.ConsoleKey = ConsoleKey;
             this.Title = Title;
         }
-		
-		public bool IsMatchKey(ConsoleKey K)
-		{
-			return (K == this.ConsoleKey);
-		}
-		
-		abstract public void Execute();
-	}
+        
+        public bool IsMatchKey(ConsoleKey K)
+        {
+            return (K == this.ConsoleKey);
+        }
+        
+        abstract public void Execute();
+    }
 }
